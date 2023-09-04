@@ -35,23 +35,21 @@ namespace TrybeHotel.Repository
         public RoomDto AddRoom(Room room) {
             _context.Rooms.Add(room);
             _context.SaveChanges();
-            var newRoom = _context.Rooms.Last();
-            var newRoomHotel = _context.Rooms.Last().Hotel;
-            return new RoomDto
+            return _context.Rooms.Select(room => new RoomDto
             {
-                roomId = newRoom.RoomId,
-                name = newRoom.Name,
-                capacity = newRoom.Capacity,
-                image = newRoom.Image,
+                roomId = room.RoomId,
+                name = room.Name,
+                capacity = room.Capacity,
+                image = room.Image,
                 hotel = new HotelDto
                 {
-                    hotelId = newRoomHotel!.HotelId,
-                    name = newRoomHotel.Name,
-                    address = newRoomHotel.Address,
-                    cityId = newRoomHotel.City!.CityId,
-                    cityName = newRoomHotel.City!.Name,
+                    hotelId = room.Hotel!.HotelId,
+                    name = room.Hotel.Name,
+                    address = room.Hotel.Address,
+                    cityId = room.Hotel.City!.CityId,
+                    cityName = room.Hotel.City!.Name,
                 }
-            };
+            }).Last();
         }
 
         // 8. Desenvolva o endpoint DELETE /room/:roomId
