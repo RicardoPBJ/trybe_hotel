@@ -27,7 +27,17 @@ namespace TrybeHotel.Repository
         // 5. Desenvolva o endpoint POST /hotel
         public HotelDto AddHotel(Hotel hotel)
         {
-            throw new NotImplementedException();
+            _context.Hotels.Add(hotel);
+            _context.SaveChanges();
+
+            return _context.Hotels.Select(hotel => new HotelDto
+            {
+                hotelId = hotel.HotelId,
+                name = hotel.Name,
+                address = hotel.Address,
+                cityId = hotel.CityId,
+                cityName = hotel.City!.Name,
+            }).Last();
         }
     }
 }
