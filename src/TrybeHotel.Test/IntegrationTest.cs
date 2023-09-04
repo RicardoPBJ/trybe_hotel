@@ -75,4 +75,40 @@ public class IntegrationTest: IClassFixture<WebApplicationFactory<Program>>
         Assert.Equal(System.Net.HttpStatusCode.OK, response?.StatusCode);
     }
 
+    [Trait("Category", "GET /hotel")]
+    [Theory(DisplayName = " Validate status 200")]
+    [InlineData("/hotel")]
+    public async Task TestGetHotel(string url)
+    {
+        var response = await _clientTest.GetAsync(url);
+        Assert.Equal(System.Net.HttpStatusCode.OK, response?.StatusCode);
+    }
+
+    [Trait("Category", "POST /hotel")]
+    [Theory(DisplayName = "Validate status 201")]
+    [InlineData("/hotel")]
+    public async Task TestPostHotel(string url)
+
+    {
+        var response = await _clientTest.PostAsync(url,new StringContent(JsonConvert.SerializeObject(new Hotel
+        {
+            Name = "Hotel Esperança",
+            Address = "Avenida Brasil, 1234",
+            CityId = 1
+        }), System.Text.Encoding.UTF8, "application/json"));
+        Assert.Equal(System.Net.HttpStatusCode.Created, response?.StatusCode);
+    }
+
+    [Trait("Category", "POST /city")]
+    [Theory(DisplayName = "Validate status'201'")]
+    [InlineData("/city")]
+    public async Task TestPostCity(string url)
+    {
+        City inputObj = new() {
+            CityId = 3,
+            Name = "São Paulo"
+        };
+        var response = await _clientTest.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
+        Assert.Equal(System.Net.HttpStatusCode.Created, response?.StatusCode);
+    }
 }
