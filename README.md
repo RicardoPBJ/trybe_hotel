@@ -1,10 +1,34 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Trybe Hotel
+
+# Contexto
+Este projeto trata-se de uma API que será utilizada em uma aplicação de booking de várias redes de hotéis.
+
+## Técnologias usadas
+
+Back-end:
+> Desenvolvido usando: C#
+
+## Instalando Dependências
+
+```bash
+cd src/ 
+dotnet restore
+```
+
+## Executando aplicação
+
+  ```
+  cd src/ && dotnet run
+  ```
+
+## Executando Testes
+
+* Para rodar todos os testes:
+
+  ```
+    cd src/ 
+    dotnet test
+  ```
+
+  ## Observações
+  O objetivo desse projeto é a pratica do csharp fazendo uma api, portanto não tem front-end 
